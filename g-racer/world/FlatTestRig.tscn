@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://d0p6shdigi52t"]
+
+[ext_resource type="PackedScene" uid="uid://bohley61hikc1" path="res://vehicles/sports_car/SportsCarFromTut.tscn" id="1_mw6au"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w2s40"]
+sky_top_color = Color(0.20583445, 0.44280842, 0.7818238, 1)
+sky_horizon_color = Color(0.7077717, 0.6588564, 0.64065623, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_7x53y"]
+sky_material = SubResource("ProceduralSkyMaterial_w2s40")
+
+[sub_resource type="Environment" id="Environment_mw6au"]
+background_mode = 2
+sky = SubResource("Sky_7x53y")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3cq78"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw6au"]
+albedo_color = Color(0.90641534, 0.4165451, 0.6727548, 1)
+
+[node name="FlatTestRig" type="Node3D" unique_id=1630353779]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1024927276]
+environment = SubResource("Environment_mw6au")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1363604859]
+transform = Transform3D(-0.86602545, -0.4330127, 0.25, 0.46229303, -0.5029528, 0.7302903, -0.19048667, 0.74802303, 0.6357486, 0, 15.925406, 0)
+shadow_enabled = true
+
+[node name="World" type="Node3D" parent="." unique_id=1368113835]
+
+[node name="Floor" type="StaticBody3D" parent="World" unique_id=173451882]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor" unique_id=2100372221]
+shape = SubResource("WorldBoundaryShape3D_3cq78")
+
+[node name="Terrain" type="CSGCombiner3D" parent="World" unique_id=236163551]
+use_collision = true
+
+[node name="BigFlat" type="CSGBox3D" parent="World/Terrain" unique_id=804874467]
+size = Vector3(500, 0.1, 500)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Terrain" unique_id=151407876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.567665, 0, -9.327637)
+size = Vector3(1, 1.8, 231.34473)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="World/Terrain" unique_id=1360980847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5576096, 0, 0)
+size = Vector3(1, 1.8, 250)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="World/Terrain" unique_id=166816306]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 1.8777838, 0, 131.12845)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="World/Terrain" unique_id=1432444512]
+transform = Transform3D(-0.5000002, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.5000002, -8.213182, 0, 141.15924)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="World/Terrain" unique_id=131597003]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.990686, 0, 144.88069)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="World/Terrain" unique_id=1680076139]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -9.501122, 0, 112.66568)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="World/Terrain" unique_id=169114595]
+transform = Transform3D(-0.5000002, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.5000002, -19.592089, 0, 122.69647)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="World/Terrain" unique_id=154878249]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -33.36959, 0, 126.41792)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="Player" parent="World" unique_id=2126686022 instance=ExtResource("1_mw6au")]

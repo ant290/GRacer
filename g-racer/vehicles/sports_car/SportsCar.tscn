@@ -235,10 +235,11 @@ stream_3/stream = ExtResource("6_op8tc")
 [node name="SportsCar" type="Node3D" unique_id=1180474858]
 
 [node name="Body" type="VehicleBody3D" parent="." unique_id=1771989461]
+mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_wp58m")
 center_of_mass_mode = 1
 script = ExtResource("1_nlkq1")
-engine_force_value = 120.0
+engine_force_value = 200.0
 
 [node name="Car_Dook" type="MeshInstance3D" parent="Body" unique_id=814357876]
 transform = Transform3D(100, 0, 0, 0, -1.1920931e-05, 100, 0, -100, -1.1920931e-05, 0, 0, 0)
@@ -259,6 +260,8 @@ polygon = PackedVector2Array(0.788, 0.2, 0.85596913, 0.6990081, 0.5550877, 1.175
 
 [node name="Wheel1" type="VehicleWheel3D" parent="Body" unique_id=537489003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.298, 1.255)
+engine_force = 50.0
+brake = 30.0
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.5
@@ -269,6 +272,8 @@ suspension_stiffness = 40.0
 
 [node name="Wheel2" type="VehicleWheel3D" parent="Body" unique_id=808167147]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.298, -1.067)
+engine_force = 50.0
+brake = 30.0
 use_as_traction = true
 wheel_roll_influence = 0.5
 wheel_radius = 0.3
@@ -278,6 +283,8 @@ suspension_stiffness = 40.0
 
 [node name="Wheel3" type="VehicleWheel3D" parent="Body" unique_id=731960068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7002345, 0.298, -1.06)
+engine_force = 50.0
+brake = 30.0
 use_as_traction = true
 wheel_roll_influence = 0.5
 wheel_radius = 0.3
@@ -287,6 +294,8 @@ suspension_stiffness = 40.0
 
 [node name="Wheel4" type="VehicleWheel3D" parent="Body" unique_id=2050769300]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.298, 1.255)
+engine_force = 50.0
+brake = 30.0
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.5

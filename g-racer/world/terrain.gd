@@ -64,11 +64,11 @@ func update_mesh() -> void:
 	
 	var shape_for_collision := ConcavePolygonShape3D.new()
 	shape_for_collision.set_faces(mesh.get_faces())
-	
+
 	if Engine.is_editor_hint():
-		var collision_shape_3d: CollisionShape3D = $StaticBody3D/CollisionShape3D
-		if collision_shape_3d:
-			collision_shape_3d.set_shape(shape_for_collision)
+		var terrain_collider: CollisionShape3D = %TerrainCollider
+		if terrain_collider:
+			terrain_collider.set_shape(shape_for_collision)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -10,6 +10,10 @@ var previous_speed := linear_velocity.length()
 var _steer_target := 0.0
 
 @onready var desired_engine_pitch: float = $EngineSound.pitch_scale
+@onready var wheel_1: VehicleWheel3D = $Wheel1
+@onready var wheel_2: VehicleWheel3D = $Wheel2
+@onready var wheel_3: VehicleWheel3D = $Wheel3
+@onready var wheel_4: VehicleWheel3D = $Wheel4
 
 func _physics_process(delta: float):
 	var fwd_mps := (linear_velocity * transform.basis).x
