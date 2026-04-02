@@ -57,6 +57,7 @@ func _physics_process(delta: float) -> void:
 	_check_camera_switch()
 	
 func _check_camera_switch():
+	if linear_velocity.length() < 5: return
 	if linear_velocity.dot(transform.basis.z) > 0:
 		camera_3d.current = true
 	else:
