@@ -290,7 +290,7 @@ wheel_roll_influence = 0.5
 wheel_radius = 0.315
 wheel_rest_length = 0.158
 wheel_friction_slip = 1.0
-suspension_stiffness = 40.0
+suspension_stiffness = 100.0
 
 [node name="Wheel_FL" type="MeshInstance3D" parent="Front_Left" unique_id=171690907]
 transform = Transform3D(0.009, 0, 0, 0, 0.009, 0, 0, 0, 0.009, 0, 0, 0)
@@ -304,7 +304,7 @@ wheel_roll_influence = 0.5
 wheel_radius = 0.315
 wheel_rest_length = 0.158
 wheel_friction_slip = 1.0
-suspension_stiffness = 40.0
+suspension_stiffness = 100.0
 
 [node name="Wheel_FR" type="MeshInstance3D" parent="Front_Right" unique_id=750801293]
 transform = Transform3D(0.009, 0, 0, 0, 0.009, 0, 0, 0, 0.009, 0, 0, 0)
@@ -317,7 +317,7 @@ wheel_roll_influence = 0.5
 wheel_radius = 0.325
 wheel_rest_length = 0.1
 wheel_friction_slip = 1.0
-suspension_stiffness = 40.0
+suspension_stiffness = 100.0
 
 [node name="Wheel_RL" type="MeshInstance3D" parent="Rear_Left" unique_id=1773322559]
 transform = Transform3D(0.009, 0, 0, 0, 0.009, 0, 0, 0, 0.009, 0, 0, 0)
@@ -330,7 +330,7 @@ wheel_roll_influence = 0.5
 wheel_radius = 0.325
 wheel_rest_length = 0.1
 wheel_friction_slip = 1.0
-suspension_stiffness = 40.0
+suspension_stiffness = 100.0
 
 [node name="Wheel_RR" type="MeshInstance3D" parent="Rear_Right" unique_id=1619474886]
 transform = Transform3D(0.009, 0, 0, 0, 0.009, 0, 0, 0, 0.009, 0, 0, 0)
