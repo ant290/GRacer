@@ -8,12 +8,30 @@ extends VehicleBody3D
 @onready var camera_3d: Camera3D = $CameraPivot/Camera3D
 @onready var reverse_camera: Camera3D = $CameraPivot/ReverseCamera
 
+var init_position : Vector3
+var init_transform : Transform3D
 var look_at : Vector3
+
+func _init() -> void:
+	init_transform = transform
+	print("init transform %s " % init_transform)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	look_at = global_position
 	pass # Replace with function body.
+	
+func _input(event):
+	if event.is_action_pressed("driving_reset"):
+		
+		# wtf is this, Godot???
+		PhysicsServer3D.body_set_state(
+			get_rid(),
+			PhysicsServer3D.BODY_STATE_TRANSFORM,
+			init_transform)
+			
+		linear_velocity = Vector3.ZERO
+		angular_velocity = Vector3.ZERO
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
