@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://boxf112qgn0c"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0s5pa"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xxv8e"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_0s5pa")
+seamless = true
+
+[resource]
+albedo_color = Color(0.63375676, 0.6337568, 0.63375676, 1)
+albedo_texture = SubResource("NoiseTexture2D_xxv8e")

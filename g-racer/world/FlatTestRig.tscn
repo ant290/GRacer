@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0p6shdigi52t"]
 
 [ext_resource type="PackedScene" uid="uid://bohley61hikc1" path="res://vehicles/sports_car/SportsCarFromTut.tscn" id="1_mw6au"]
+[ext_resource type="Material" uid="uid://boxf112qgn0c" path="res://world/materials/concrete.tres" id="2_3cq78"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w2s40"]
 sky_top_color = Color(0.20583445, 0.44280842, 0.7818238, 1)
@@ -20,6 +21,14 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw6au"]
 albedo_color = Color(0.90641534, 0.4165451, 0.6727548, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_npd01"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -193.46538, 10.109299, 117.76268, 0, 0, 0, 0, 0, 0, -188.8808, 15.757378, -30.375519, 0, 0, 0, 0, 0, 0, -121.80612, 21.71212, -77.60806, 0, 0, 0, 0, 0, 0, -67.459785, 16.054253, -20.33844, 0, 0, 0, 0, 0, 0, -62.7357, 6.750622, 142.68217, 0, 0, 0, 0, 0, 0, -123.73552, 7.8029785, 171.35483),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [node name="FlatTestRig" type="Node3D" unique_id=1630353779]
 
@@ -84,3 +93,23 @@ size = Vector3(1, 1.8, 15)
 material = SubResource("StandardMaterial3D_mw6au")
 
 [node name="Player" parent="World" unique_id=2126686022 instance=ExtResource("1_mw6au")]
+
+[node name="Racetrack" type="CSGPolygon3D" parent="World" unique_id=2030955950]
+calculate_tangents = false
+use_collision = true
+mode = 2
+path_node = NodePath("Path3D")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 2.0
+path_rotation = 1
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 20.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("2_3cq78")
+
+[node name="Path3D" type="Path3D" parent="World/Racetrack" unique_id=1288382172]
+curve = SubResource("Curve3D_npd01")
