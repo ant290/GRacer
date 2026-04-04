@@ -1,0 +1,54 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bxtksfpdvqhm0"]
+
+[ext_resource type="Shader" uid="uid://f0u470axtnd6" path="res://addons/proc_terrain/water_shader.tres" id="1_jqt2h"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jqt2h"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fb4os"]
+noise = SubResource("FastNoiseLite_jqt2h")
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i468l"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j7d50"]
+noise = SubResource("FastNoiseLite_i468l")
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fb4os"]
+frequency = 0.001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i468l"]
+noise = SubResource("FastNoiseLite_fb4os")
+seamless = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jqt2h")
+shader_parameter/albedo = Color(0, 0.32156864, 0.43137255, 1)
+shader_parameter/albedo2 = Color(4.5242905e-06, 0.5024943, 0.6650545, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/wave = SubResource("NoiseTexture2D_i468l")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_fb4os")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_j7d50")
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(2, 0)
+shader_parameter/time_scale = 0.00999999977648
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.15
+shader_parameter/color_deep = Color(0, 0.32156864, 0.43137255, 1)
+shader_parameter/color_shallow = Color(1.2513996e-06, 0.63128304, 0.8313965, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0.39607844, 0.39607844, 0.39607844, 1)

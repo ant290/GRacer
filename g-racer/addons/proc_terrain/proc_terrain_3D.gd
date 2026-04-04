@@ -9,23 +9,28 @@ extends MeshInstance3D
 @export_range(32,1024,4) var size := 256.0:
 	set(new_size):
 		size = new_size
-		update_mesh()
+		update_all()
 
 @export_range(4, 256, 4) var resolution := 32:
 	set(new_resolution):
 		resolution = new_resolution
-		update_mesh()
+		update_all()
 
 @export_range(4.0, 128.0, 4.0) var height := 28.0:
 	set(new_height):
 		height = new_height
 		#material_override.set_shader_parameter("height", height * 2.0)
-		update_mesh()
+		update_all()
+
+@export var water := false:
+	set(new_water):
+		water = new_water
+		update_water()
 
 @export var noise : FastNoiseLite:
 	set(new_noise):
 		noise = new_noise
-		update_mesh()
+		update_all()
 		if noise:
 			noise.changed.connect(update_mesh)
 
@@ -65,6 +70,10 @@ func get_normal(x: float, y:float) -> Vector3:
 	)
 	return normal.normalized()
 
+func update_all() -> void:
+	update_mesh()
+	update_water()
+
 func update_mesh() -> void:
 	var plane := PlaneMesh.new()
 	plane.subdivide_depth = resolution
@@ -102,6 +111,33 @@ func update_mesh() -> void:
 		var terrain_collider: CollisionShape3D = find_child("TerrainCollider", true, true)
 		if terrain_collider:
 			terrain_collider.set_shape(shape_for_collision)
+
+func update_water() -> void:
+	if Engine.is_editor_hint():
+		var water_node: MeshInstance3D = find_child("WaterMesh", true, true)
+		if water_node:
+			water_node.scale = Vector3(size,1,size)
+			if water:
+				water_node.visible = true;
+			else:
+				water_node.visible = false;
+		else:
+			var loaded_material = preload("res://addons/proc_terrain/water_material.tres")
+			var water_mesh := MeshInstance3D.new()
+			var quad_mesh := QuadMesh.new()
+			quad_mesh.size = Vector2.ONE
+			quad_mesh.subdivide_depth = 200
+			quad_mesh.subdivide_width = 200
+			quad_mesh.orientation = PlaneMesh.FACE_Y
+			water_mesh.mesh = quad_mesh
+			water_mesh.set_surface_override_material(0, loaded_material)
+			
+			water_mesh.name = "WaterMesh"
+			water_mesh.visible = water
+			water_mesh.scale = Vector3(size,1,size)
+			
+			add_child(water_mesh)
+			water_mesh.owner = get_tree().edited_scene_root
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
