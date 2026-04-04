@@ -1,11 +1,25 @@
 @tool
+
+# Icons are optional.
+# Alternatively, you may use the UID of the icon or the absolute path.
+@icon("icon.svg")
+class_name ProcTerrain3D
 extends MeshInstance3D
 
-const size := 256.0
+@export_range(32,1024,4) var size := 256.0:
+	set(new_size):
+		size = new_size
+		update_mesh()
 
 @export_range(4, 256, 4) var resolution := 32:
 	set(new_resolution):
 		resolution = new_resolution
+		update_mesh()
+
+@export_range(4.0, 128.0, 4.0) var height := 28.0:
+	set(new_height):
+		height = new_height
+		#material_override.set_shader_parameter("height", height * 2.0)
 		update_mesh()
 
 @export var noise : FastNoiseLite:
@@ -15,11 +29,29 @@ const size := 256.0
 		if noise:
 			noise.changed.connect(update_mesh)
 
-@export_range(4.0, 128.0, 4.0) var height := 64.0:
-	set(new_height):
-		height = new_height
-		#material_override.set_shader_parameter("height", height * 2.0)
-		update_mesh()
+func _enter_tree():
+	var terrain_collider: CollisionShape3D = find_child("TerrainCollider", true, true)
+	if not terrain_collider:
+		var static_body = StaticBody3D.new()
+		static_body.name = "StaticBody3D"
+		
+		var collider = CollisionShape3D.new()
+		collider.name = "TerrainCollider"
+		
+		static_body.add_child(collider)
+		
+		add_child(static_body)
+		static_body.owner = get_tree().edited_scene_root
+		collider.owner = get_tree().edited_scene_root
+	
+	if not noise:
+		var fast_noise = FastNoiseLite.new()
+		fast_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+		noise = fast_noise
+	
+	if not material_override:
+		const DIRT_MATERIAL = preload("res://addons/proc_terrain/dirt_material.tres")
+		material_override = DIRT_MATERIAL
 
 func get_height(x: float, y: float) -> float:
 	return noise.get_noise_2d(x, y) * height
@@ -66,7 +98,8 @@ func update_mesh() -> void:
 	shape_for_collision.set_faces(mesh.get_faces())
 
 	if Engine.is_editor_hint():
-		var terrain_collider: CollisionShape3D = %TerrainCollider
+		#var terrain_collider: CollisionShape3D = $StaticBody3D/TerrainCollider
+		var terrain_collider: CollisionShape3D = find_child("TerrainCollider", true, true)
 		if terrain_collider:
 			terrain_collider.set_shape(shape_for_collision)
 

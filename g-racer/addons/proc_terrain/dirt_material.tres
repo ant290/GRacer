@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c2mc0cspnjcv0"]
+
+[sub_resource type="Gradient" id="Gradient_nytos"]
+offsets = PackedFloat32Array(0.1716418, 0.7089552)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wgoqa"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nytos"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_wgoqa")
+color_ramp = SubResource("Gradient_nytos")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wgoqa"]
+
+[resource]
+albedo_color = Color(0.18371192, 0.08316856, 0.055008113, 1)
+albedo_texture = SubResource("NoiseTexture2D_nytos")
+metallic_specular = 0.28
+roughness_texture = SubResource("NoiseTexture2D_wgoqa")
+uv1_triplanar = true
