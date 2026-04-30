@@ -274,6 +274,13 @@ shadow_size = 11
 shadow_color = Color(0, 0, 0, 0.65882355)
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="LabelSettings" id="LabelSettings_xgfnw"]
+font_size = 50
+font_color = Color(0.6313395, 0.8465787, 0.7283227, 1)
+shadow_size = 11
+shadow_color = Color(0, 0, 0, 0.65882355)
+shadow_offset = Vector2(3, 3)
+
 [node name="Player" type="VehicleBody3D" unique_id=2126686022]
 gravity_scale = 2.0
 center_of_mass_mode = 1
@@ -353,6 +360,22 @@ transform = Transform3D(-1, 2.9900352e-08, -8.215054e-08, 0, 0.9396927, 0.342020
 [node name="ReverseCamera" type="Camera3D" parent="CameraPivot" unique_id=272876660]
 transform = Transform3D(1, 0, 0, 0, 0.9396927, 0.34202015, 0, -0.34202015, 0.9396927, 0, 2.916331, 3.9709282)
 
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=2055232726]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+max_value = 7000.0
+step = 100.0
+value = 800.0
+show_percentage = false
+
 [node name="Spedometer" type="Label" parent="." unique_id=615622325]
 unique_name_in_owner = true
 anchors_preset = 3
@@ -373,3 +396,19 @@ vertical_alignment = 1
 script = ExtResource("4_xgfnw")
 speed_unit = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="GearChoice" type="Label" parent="." unique_id=1804343638]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -205.0
+offset_top = -197.0
+offset_right = -76.0
+offset_bottom = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "GEAR"
+label_settings = SubResource("LabelSettings_xgfnw")
