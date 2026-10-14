@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dlgsuddu1ablo"]
+
+[ext_resource type="Script" uid="uid://dg36ubo7q3ras" path="res://vehicles/ithappy Vehicle Controller/vehicle.gd" id="1_7bcnb"]
+[ext_resource type="PackedScene" uid="uid://chot5o6uy1at7" path="res://vehicles/ithappy Vehicle Controller/car_camera_controller.tscn" id="2_obkhx"]
+[ext_resource type="AudioStream" uid="uid://cj1sh81nh5rp1" path="res://vehicles/engine.wav" id="3_ydgcc"]
+[ext_resource type="PackedScene" uid="uid://b6ld2b5ob7ha0" path="res://vehicles/ithappy Vehicle Controller/hud.tscn" id="4_cfoa7"]
+
+[node name="VehicleBody3D" type="VehicleBody3D" unique_id=1756589733 node_paths=PackedStringArray("engine_sound")]
+script = ExtResource("1_7bcnb")
+engine_sound = NodePath("EngineSound")
+
+[node name="CameraController" parent="." unique_id=1696541130 instance=ExtResource("2_obkhx")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="EngineSound" type="AudioStreamPlayer3D" parent="." unique_id=914661060]
+stream = ExtResource("3_ydgcc")
+autoplay = true
+bus = &"VehicleEffects"
+
+[node name="HUD" parent="." unique_id=1388785971 instance=ExtResource("4_cfoa7")]
+unique_name_in_owner = true

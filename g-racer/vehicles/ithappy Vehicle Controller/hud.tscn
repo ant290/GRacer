@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://b6ld2b5ob7ha0"]
+
+[ext_resource type="Script" uid="uid://d3s28n4fddns0" path="res://vehicles/ithappy Vehicle Controller/hud.gd" id="1_aqt8k"]
+[ext_resource type="Script" uid="uid://bkrp8wnn6uu7a" path="res://vehicles/ithappy Vehicle Controller/spedometer.gd" id="1_fxogt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8rek"]
+font_size = 50
+font_color = Color(0.6313395, 0.8465787, 0.7283227, 1)
+shadow_size = 11
+shadow_color = Color(0, 0, 0, 0.65882355)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lho4y"]
+font_size = 50
+font_color = Color(0.6313395, 0.8465787, 0.7283227, 1)
+shadow_size = 11
+shadow_color = Color(0, 0, 0, 0.65882355)
+shadow_offset = Vector2(3, 3)
+
+[node name="HUD" type="CanvasLayer" unique_id=1388785971]
+script = ExtResource("1_aqt8k")
+
+[node name="Spedometer" type="Label" parent="." unique_id=654611494]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -211.0
+offset_top = -129.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "SPEED"
+label_settings = SubResource("LabelSettings_q8rek")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_fxogt")
+
+[node name="GearChoice" type="Label" parent="." unique_id=1736834273]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -205.0
+offset_top = -197.0
+offset_right = -76.0
+offset_bottom = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "GEAR"
+label_settings = SubResource("LabelSettings_lho4y")
+
+[node name="RPMBar" type="ProgressBar" parent="." unique_id=358672710]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+max_value = 7000.0
+step = 100.0
+value = 800.0
+show_percentage = false

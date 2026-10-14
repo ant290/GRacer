@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0p6shdigi52t"]
 
-[ext_resource type="PackedScene" uid="uid://bohley61hikc1" path="res://vehicles/sports_car/SportsCarFromTut.tscn" id="1_mw6au"]
 [ext_resource type="Material" uid="uid://boxf112qgn0c" path="res://world/materials/concrete.tres" id="2_3cq78"]
+[ext_resource type="PackedScene" uid="uid://cuxbqqpo6pqb3" path="res://vehicles/ithappy Vehicle Controller/my_car.tscn" id="2_npd01"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w2s40"]
 sky_top_color = Color(0.20583445, 0.44280842, 0.7818238, 1)
@@ -19,13 +19,26 @@ glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3cq78"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mkxyx"]
+frequency = 0.0229
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fo4ig"]
+width = 100
+height = 100
+noise = SubResource("FastNoiseLite_mkxyx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x15f7"]
+albedo_color = Color(0.5947834, 0.38674948, 0.47163063, 1)
+albedo_texture = SubResource("NoiseTexture2D_fo4ig")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw6au"]
 albedo_color = Color(0.90641534, 0.4165451, 0.6727548, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_npd01"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -193.46538, 10.109299, 117.76268, 0, 0, 0, 0, 0, 0, -188.8808, 15.757378, -30.375519, 0, 0, 0, 0, 0, 0, -121.80612, 21.71212, -77.60806, 0, 0, 0, 0, 0, 0, -67.459785, 16.054253, -20.33844, 0, 0, 0, 0, 0, 0, -62.7357, 6.750622, 142.68217, 0, 0, 0, 0, 0, 0, -123.73552, 7.8029785, 171.35483, 0, 0, 0, 0, 0, 0, -153.72917, 14.710774, 167.06975, 0, 0, 0, 0, 0, 0, -161.64418, 18.191883, 157.13702),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -193.46538, 10.109299, 117.76268, 0, 0, 0, 0, 0, 0, -188.8808, 15.757378, -30.375519, 0, 0, 0, 0, 0, 0, -121.80612, 21.71212, -77.60806, 0, 0, 0, 0, 0, 0, -67.459785, 16.054253, -20.33844, 0, 0, 0, 0, 0, 0, -62.7357, 6.750622, 142.68217, 0, 0, 0, 0, 0, 0, -123.73552, 8.571316, 171.35483, 0, 0, 0, 0, 0, 0, -153.72917, 14.710774, 167.06975, 0, 0, 0, 0, 0, 0, -161.64418, 16.493809, 157.13702),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
@@ -51,6 +64,7 @@ use_collision = true
 
 [node name="BigFlat" type="CSGBox3D" parent="World/Terrain" unique_id=804874467]
 size = Vector3(500, 0.1, 500)
+material = SubResource("StandardMaterial3D_x15f7")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="World/Terrain" unique_id=151407876]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.567665, 0, -9.327637)
@@ -92,8 +106,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -33.
 size = Vector3(1, 1.8, 15)
 material = SubResource("StandardMaterial3D_mw6au")
 
-[node name="Player" parent="World" unique_id=2126686022 instance=ExtResource("1_mw6au")]
-
 [node name="Racetrack" type="CSGPolygon3D" parent="World" unique_id=2030955950]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.939083, 0)
 calculate_tangents = false
@@ -115,3 +127,8 @@ material = ExtResource("2_3cq78")
 
 [node name="Path3D" type="Path3D" parent="World/Racetrack" unique_id=1288382172]
 curve = SubResource("Curve3D_npd01")
+
+[node name="MyCar" parent="." unique_id=1756589733 instance=ExtResource("2_npd01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91065216, 0.22132069, -1.5693665)
+shift_down_engine_RPM = 1500
+gear_ratios = Array[float]([0.0, 2.4, 1.8, 1.4, 1.0, 0.7])
