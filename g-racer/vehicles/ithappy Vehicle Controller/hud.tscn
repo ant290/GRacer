@@ -70,3 +70,32 @@ max_value = 7000.0
 step = 100.0
 value = 800.0
 show_percentage = false
+
+[node name="ThrottleBar" type="ProgressBar" parent="." unique_id=2010350126]
+unique_name_in_owner = true
+offset_left = 57.0
+offset_top = 1060.0
+offset_right = 107.0
+offset_bottom = 1080.0
+rotation = -1.5707964
+max_value = 1.0
+show_percentage = false
+
+[node name="ReverseBar" type="ProgressBar" parent="." unique_id=1609452490]
+unique_name_in_owner = true
+offset_left = 21.0
+offset_top = 1061.0
+offset_right = 71.0
+offset_bottom = 1081.0
+rotation = -1.5707964
+max_value = 1.0
+show_percentage = false
+
+[node name="HandbrakeRect" type="ColorRect" parent="." unique_id=1076454755]
+unique_name_in_owner = true
+visible = false
+offset_left = 92.0
+offset_top = 1015.0
+offset_right = 132.0
+offset_bottom = 1055.0
+color = Color(0.9607843, 0, 0, 1)

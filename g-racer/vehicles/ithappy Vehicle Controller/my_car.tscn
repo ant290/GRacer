@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dlgsuddu1ablo" path="res://vehicles/ithappy Vehicle Controller/vehicle.tscn" id="1_33mum"]
 [ext_resource type="Texture2D" uid="uid://ci13xs0kmrdh4" path="res://vehicles/ithappy Vehicle Controller/model/car-04a_Textures1.png" id="2_mpsnu"]
-[ext_resource type="Script" uid="uid://nxst44juvo6e" path="res://vehicles/ithappy Vehicle Controller/car_camera_controller.gd" id="2_t7pg6"]
 [ext_resource type="Texture2D" uid="uid://b8xyvq4ddb2na" path="res://vehicles/ithappy Vehicle Controller/model/car-04a_Decals_1.png" id="3_x15f7"]
 [ext_resource type="Texture2D" uid="uid://drx80873rdsog" path="res://vehicles/ithappy Vehicle Controller/model/car-04a_Tire_Color.png" id="4_t7pg6"]
 [ext_resource type="Texture2D" uid="uid://c0pgxysat31kd" path="res://vehicles/ithappy Vehicle Controller/model/car-04a_Tire_Normal.png" id="5_fo4ig"]
@@ -1335,6 +1334,7 @@ size = Vector3(1.9765625, 0.8071289, 3.9892578)
 size = Vector3(1.5666504, 0.53063965, 1.0527344)
 
 [node name="MyCar" unique_id=1756589733 node_paths=PackedStringArray("wheel_traction_left", "wheel_traction_right") instance=ExtResource("1_33mum")]
+collision_layer = 2
 mass = 990.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, -0.3, 0)
@@ -1342,10 +1342,10 @@ torque = 2500
 turn_speed = 2.0
 wheel_traction_left = NodePath("WheelFrontLeft")
 wheel_traction_right = NodePath("WheelFrontRight")
+max_brake_force = 100.0
 
 [node name="CameraController" parent="." index="0" unique_id=1696541130]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.802758, 0)
-script = ExtResource("2_t7pg6")
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.8, 0)
 
 [node name="Car_04" type="MeshInstance3D" parent="." index="1" unique_id=765209755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.105801985, -0.0008939281)
@@ -1401,7 +1401,7 @@ use_as_steering = true
 wheel_radius = 0.52
 wheel_friction_slip = 2.0
 suspension_travel = 0.25
-suspension_stiffness = 25.0
+suspension_stiffness = 60.0
 
 [node name="Car_04_Wheel_FL" type="MeshInstance3D" parent="WheelFrontLeft" index="0" unique_id=1293517375]
 mesh = SubResource("ArrayMesh_x0bvf")
@@ -1413,7 +1413,7 @@ use_as_steering = true
 wheel_radius = 0.52
 wheel_friction_slip = 2.0
 suspension_travel = 0.25
-suspension_stiffness = 25.0
+suspension_stiffness = 60.0
 
 [node name="Car_04_Wheel_FR" type="MeshInstance3D" parent="WheelFrontRight" index="0" unique_id=575363099]
 mesh = SubResource("ArrayMesh_xs56f")
@@ -1423,7 +1423,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92770195, 0.30367857, -1.17
 wheel_radius = 0.52
 wheel_friction_slip = 1.9
 suspension_travel = 0.25
-suspension_stiffness = 25.0
+suspension_stiffness = 60.0
 
 [node name="Car_04_Wheel_RL" type="MeshInstance3D" parent="WheelRearLeft" index="0" unique_id=1469829589]
 mesh = SubResource("ArrayMesh_dyrqv")
@@ -1433,7 +1433,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92770386, 0.30367857, -1.1
 wheel_radius = 0.52
 wheel_friction_slip = 1.9
 suspension_travel = 0.25
-suspension_stiffness = 25.0
+suspension_stiffness = 60.0
 
 [node name="Car_04_Wheel_RR" type="MeshInstance3D" parent="WheelRearRight" index="0" unique_id=17869902]
 mesh = SubResource("ArrayMesh_dpnbs")

@@ -19,6 +19,22 @@ glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3cq78"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ji488"]
+
+[sub_resource type="Curve3D" id="Curve3D_npd01"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -193.46538, 10.109299, 117.76268, 0, 0, 0, 0, 0, 0, -188.8808, 15.757378, -30.375519, 0, 0, 0, 0, 0, 0, -121.80612, 21.71212, -77.60806, 0, 0, 0, 0, 0, 0, -67.459785, 16.054253, -20.33844, 0, 0, 0, 0, 0, 0, -62.7357, 6.750622, 142.68217, 0, 0, 0, 0, 0, 0, -123.73552, 8.571316, 171.35483, 0, 0, 0, 0, 0, 0, -153.72917, 14.710774, 167.06975, 0, 0, 0, 0, 0, 0, -161.64418, 16.493809, 157.13702),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qeea"]
+albedo_color = Color(0.12225223, 0.12225223, 0.12225223, 1)
+metallic = 0.25
+metallic_specular = 0.69
+roughness = 0.69
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mkxyx"]
 frequency = 0.0229
 fractal_type = 3
@@ -34,14 +50,6 @@ albedo_texture = SubResource("NoiseTexture2D_fo4ig")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw6au"]
 albedo_color = Color(0.90641534, 0.4165451, 0.6727548, 1)
-
-[sub_resource type="Curve3D" id="Curve3D_npd01"]
-closed = true
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -193.46538, 10.109299, 117.76268, 0, 0, 0, 0, 0, 0, -188.8808, 15.757378, -30.375519, 0, 0, 0, 0, 0, 0, -121.80612, 21.71212, -77.60806, 0, 0, 0, 0, 0, 0, -67.459785, 16.054253, -20.33844, 0, 0, 0, 0, 0, 0, -62.7357, 6.750622, 142.68217, 0, 0, 0, 0, 0, 0, -123.73552, 8.571316, 171.35483, 0, 0, 0, 0, 0, 0, -153.72917, 14.710774, 167.06975, 0, 0, 0, 0, 0, 0, -161.64418, 16.493809, 157.13702),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 8
 
 [node name="FlatTestRig" type="Node3D" unique_id=1630353779]
 
@@ -59,54 +67,13 @@ shadow_enabled = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor" unique_id=2100372221]
 shape = SubResource("WorldBoundaryShape3D_3cq78")
 
-[node name="Terrain" type="CSGCombiner3D" parent="World" unique_id=236163551]
+[node name="TerrainBody" type="StaticBody3D" parent="World" unique_id=624653598]
+physics_material_override = SubResource("PhysicsMaterial_ji488")
+
+[node name="Terrain" type="CSGCombiner3D" parent="World/TerrainBody" unique_id=236163551]
 use_collision = true
 
-[node name="BigFlat" type="CSGBox3D" parent="World/Terrain" unique_id=804874467]
-size = Vector3(500, 0.1, 500)
-material = SubResource("StandardMaterial3D_x15f7")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="World/Terrain" unique_id=151407876]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.567665, 0, -9.327637)
-size = Vector3(1, 1.8, 231.34473)
-material = SubResource("StandardMaterial3D_mw6au")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="World/Terrain" unique_id=1360980847]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5576096, 0, 0)
-size = Vector3(1, 1.8, 250)
-material = SubResource("StandardMaterial3D_mw6au")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="World/Terrain" unique_id=166816306]
-transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 1.8777838, 0, 131.12845)
-size = Vector3(1, 1.8, 15)
-material = SubResource("StandardMaterial3D_mw6au")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="World/Terrain" unique_id=1432444512]
-transform = Transform3D(-0.5000002, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.5000002, -8.213182, 0, 141.15924)
-size = Vector3(1, 1.8, 15)
-material = SubResource("StandardMaterial3D_mw6au")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="World/Terrain" unique_id=131597003]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.990686, 0, 144.88069)
-size = Vector3(1, 1.8, 15)
-material = SubResource("StandardMaterial3D_mw6au")
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="World/Terrain" unique_id=1680076139]
-transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -9.501122, 0, 112.66568)
-size = Vector3(1, 1.8, 15)
-material = SubResource("StandardMaterial3D_mw6au")
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="World/Terrain" unique_id=169114595]
-transform = Transform3D(-0.5000002, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.5000002, -19.592089, 0, 122.69647)
-size = Vector3(1, 1.8, 15)
-material = SubResource("StandardMaterial3D_mw6au")
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="World/Terrain" unique_id=154878249]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -33.36959, 0, 126.41792)
-size = Vector3(1, 1.8, 15)
-material = SubResource("StandardMaterial3D_mw6au")
-
-[node name="Racetrack" type="CSGPolygon3D" parent="World" unique_id=2030955950]
+[node name="Racetrack" type="CSGPolygon3D" parent="World/TerrainBody/Terrain" unique_id=2030955950]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.939083, 0)
 calculate_tangents = false
 use_collision = true
@@ -125,8 +92,228 @@ path_joined = false
 smooth_faces = true
 material = ExtResource("2_3cq78")
 
-[node name="Path3D" type="Path3D" parent="World/Racetrack" unique_id=1288382172]
+[node name="Path3D" type="Path3D" parent="World/TerrainBody/Terrain/Racetrack" unique_id=1288382172]
 curve = SubResource("Curve3D_npd01")
+
+[node name="Bumps" type="CSGCombiner3D" parent="World/TerrainBody/Terrain" unique_id=2014632515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.60599, -0.3412807, 86.14877)
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=914641960]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=135563821]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.5554905, 0, 1.7761909)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=2088111008]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.16217422, 0, 3.4773107)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=1242256414]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.807765, 0, 5.004356)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=667483466]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, -6.8061523)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=214938242]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.5554924, 0, -5.0299606)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=1214771506]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.16217422, 0, -3.3288422)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=236360845]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.807766, 0, -1.801796)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=213531636]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, -13.96122)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=334498289]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.5554924, 0, -12.185028)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=1899096955]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.16217422, 0, -10.48391)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/Bumps" unique_id=1222979715]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.807766, 0, -8.956863)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="BigBumps" type="CSGCombiner3D" parent="World/TerrainBody/Terrain" unique_id=360757247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.86466, -0.066217184, 86.223434)
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=905281533]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1649276875]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.5554905, 0, 1.7761909)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1903439056]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.16217422, 0, 3.4773107)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1573452984]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.807765, 0, 5.004356)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1467565415]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, -6.8061523)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1459017004]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.5554924, 0, -5.0299606)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1330352692]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.16217422, 0, -3.3288422)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=984345167]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.807766, 0, -1.801796)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=836001284]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, -13.96122)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1373128685]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.5554924, 0, -12.185028)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1335949247]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.16217422, 0, -10.48391)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="World/TerrainBody/Terrain/BigBumps" unique_id=1510841439]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 3.807766, 0, -8.956863)
+radius = 0.6
+height = 4.0
+sides = 16
+material = SubResource("StandardMaterial3D_7qeea")
+
+[node name="BigFlat" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=804874467]
+size = Vector3(1000, 0.1, 1000)
+material = SubResource("StandardMaterial3D_x15f7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=151407876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.567665, 0, -9.327637)
+size = Vector3(1, 1.8, 231.34473)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=1360980847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5576096, 0, 0)
+size = Vector3(1, 1.8, 250)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=166816306]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 1.8777838, 0, 131.12845)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=1432444512]
+transform = Transform3D(-0.5000002, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.5000002, -8.213182, 0, 141.15924)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=131597003]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.990686, 0, 144.88069)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=1680076139]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -9.501122, 0, 112.66568)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=169114595]
+transform = Transform3D(-0.5000002, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.5000002, -19.592089, 0, 122.69647)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="World/TerrainBody/Terrain" unique_id=154878249]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -33.36959, 0, 126.41792)
+size = Vector3(1, 1.8, 15)
+material = SubResource("StandardMaterial3D_mw6au")
 
 [node name="MyCar" parent="." unique_id=1756589733 instance=ExtResource("2_npd01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91065216, 0.22132069, -1.5693665)
